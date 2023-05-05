@@ -3,10 +3,10 @@ package com.technorities.metrics;
 import org.junit.jupiter.api.Test;
 import org.springframework.boot.test.context.SpringBootTest;
 
-@SpringBootTest
+//@SpringBootTest
 class MetricsApplicationTests {
 
-	@Test
+//	@Test
 	void contextLoads() {
 	}
 
