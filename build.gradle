@@ -1,0 +1,41 @@
+plugins {
+	id 'java'
+	id 'war'
+	id 'org.springframework.boot' version '3.0.6'
+	id 'io.spring.dependency-management' version '1.1.0'
+	id "org.sonarqube" version "4.2.1.3168"
+}
+
+group = 'com.technorities'
+version = '0.0.1-SNAPSHOT'
+sourceCompatibility = '17'
+
+repositories {
+	mavenCentral()
+}
+
+apply from: "dependencies.gradle"
+
+dependencies {
+	implementation 'org.springframework.boot:spring-boot-starter-web'
+		testImplementation 'org.springframework.boot:spring-boot-starter-test'
+	// https://mvnrepository.com/artifact/org.springframework.boot/spring-boot-starter-actuator
+	implementation group: 'org.springframework.boot', name: 'spring-boot-starter-actuator', version: '3.0.6'
+// https://mvnrepository.com/artifact/io.micrometer/micrometer-registry-prometheus
+	implementation 'io.micrometer:micrometer-registry-prometheus:1.10.6'
+	compileOnly "org.projectlombok:lombok:${lombokVersion}"
+	annotationProcessor "org.projectlombok:lombok:${lombokVersion}"
+
+}
+
+tasks.named('test') {
+	useJUnitPlatform()
+}
+
+sonarqube {
+	properties {
+		property "sonar.projectKey", "yadeya_metrics"
+		property "sonar.organization", "yadeya"
+		property "sonar.host.url", "https://sonarcloud.io"
+	}
+}
